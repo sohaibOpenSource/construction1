@@ -1,0 +1,96 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* report_extend_bf
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 11.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-04-08 21:59+0000\n"
+"PO-Revision-Date: 2020-04-08 21:59+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: report_extend_bf
+#: model:ir.model,name:report_extend_bf.model_res_partner
+msgid "Contact"
+msgstr "Contacto"
+
+#. module: report_extend_bf
+#: model:ir.model.fields,field_description:report_extend_bf.field_res_partner_display_address
+msgid "Display addres"
+msgstr "Display addres"
+
+#. module: report_extend_bf
+#: model:ir.model.fields,field_description:report_extend_bf.field_ir_act_report_xml_output_file
+msgid "Format Output File."
+msgstr "Formato de archivo de salida."
+
+#. module: report_extend_bf
+#: model:ir.model.fields,help:report_extend_bf.field_ir_act_report_xml_output_file
+msgid "Format Output File. (Format Default *.odt Output File)"
+msgstr "Formato de archivo de salida. (Por defecto *.odt archivo de salida)"
+
+#. module: report_extend_bf
+#: code:addons/report_extend_bf/controllers/helper.py:9
+#, python-format
+msgid "Mail: "
+msgstr "Correo elec.: "
+
+#. module: report_extend_bf
+#: code:addons/report_extend_bf/controllers/helper.py:7
+#, python-format
+msgid "Tel: "
+msgstr "Teléfono: "
+
+#. module: report_extend_bf
+#: model:ir.model.fields,field_description:report_extend_bf.field_ir_act_report_xml_template_id
+msgid "Template *.odt"
+msgstr "Template *.odt"
+
+#. module: report_extend_bf
+#: model:ir.model.fields,field_description:report_extend_bf.field_res_partner_vat_label
+#: model:ir.model.fields,field_description:report_extend_bf.field_res_partner_vat_label_full
+msgid "Vat label vat"
+msgstr "Vat label vat"
+
+#. module: report_extend_bf
+#: code:addons/report_extend_bf/controllers/helper.py:11
+#, python-format
+msgid "Web: "
+msgstr "Web: "
+
+#. module: report_extend_bf
+#: selection:ir.actions.report,output_file:0
+msgid "doc"
+msgstr "doc"
+
+#. module: report_extend_bf
+#: selection:ir.actions.report,output_file:0
+msgid "docx"
+msgstr "docx"
+
+#. module: report_extend_bf
+#: model:ir.model,name:report_extend_bf.model_ir_actions_report
+msgid "ir.actions.report"
+msgstr "ir.actions.report"
+
+#. module: report_extend_bf
+#: selection:ir.actions.report,output_file:0
+msgid "ods"
+msgstr "ods"
+
+#. module: report_extend_bf
+#: selection:ir.actions.report,output_file:0
+msgid "pdf"
+msgstr "pdf"
+
+#. module: report_extend_bf
+#: selection:ir.actions.report,output_file:0
+msgid "rtf"
+msgstr "rtf"
+

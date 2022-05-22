@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="wizard_stock_picking_invoice_form_view" model="ir.ui.view">
+            <field name="name">wizard.stock.picking.invoice.form</field>
+            <field name="model">wizard.stock.picking.invoice</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+                        <field name="invoice_type" style="font-weight:bold;font-size:18px;" invisible="1"/>
+                        <field name="journal_id" options="{'no_create_edit': True, 'no_create': True, 'no_open': True}" style="width:40%"/>
+                        <field name="invoice_date" class="oe_inline"/>
+                        <field name="group_by_partner" class="oe_inline"/>
+                    </group>
+                    <footer>
+                        <button name="create_invoice" string="Create Invoices" type="object" class="btn-primary"/>
+                        <button string="Cancel" class="btn-secondary" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <act_window
+            name="Create Invoice"
+            res_model="wizard.stock.picking.invoice"
+            binding_model="stock.picking"
+            view_mode="form"
+            target="new"
+            id="action_stock_picking_create_invoice" />
+
+        <record id="inherit_view_stock_picking_form" model="ir.ui.view">
+            <field name="name">stock.picking.form</field>
+            <field name="model">stock.picking</field>
+            <field name="inherit_id" ref="stock.view_picking_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//form//header" position="inside">
+                    <button type="action" name="%(action_stock_picking_create_invoice)d" string="Create Invoice" class="btn btn-primary"
+                        attrs="{'invisible':['|', '|',('picking_type_code', '=', 'internal'),('invoice_ids_count', '!=', 0), ('state','!=','done')]}"/>
+                </xpath>
+                <xpath expr="//div[@name='button_box']" position="inside">
+                    <button name="view_account_invoices" type="object" class="oe_stat_button" 
+                        icon="fa-pencil-square-o" attrs="{'invisible':[('invoice_ids_count','=',0)]}">
+                        <field name="invoice_ids_count" widget="statinfo"/>
+                    </button>
+                </xpath>
+            </field>
+        </record> 
+
+        <record id="inherit_view_account_customer_invoice_form" model="ir.ui.view">
+            <field name="name">account.move.customer.invoice.form</field>
+            <field name="model">account.move</field>
+            <field name="inherit_id" ref="account.view_move_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//group[@id='header_left_group']" position="inside">
+                    <field name="stock_picking_ids" widget="many2many_tags" readonly="1"/>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</odoo>

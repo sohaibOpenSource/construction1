@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <report
+        id="report_contracted_order"
+        string="Contracted Order"
+        model="sale.contracted.order"
+        report_type="qweb-pdf"
+        file="sale_contracted_order.report_contractedorder"
+        name="sale_contracted_order.report_contractedorder"
+    />
+</odoo>

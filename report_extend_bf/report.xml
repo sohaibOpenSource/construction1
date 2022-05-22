@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record model="ir.actions.report" id="action_report_base_tmpl_print_out_vals">
+            <field name="name">Print Out Vals</field>
+            <field name="model">res.users</field>
+            <field name="report_type">controller</field>
+            <field name="report_name">PrintOutVals</field>
+            <field name="print_report_name">'User - %s' % (object.name)</field>
+            <field name="binding_model_id" ref="base.model_res_users"/>
+            <field name="binding_type">report</field>
+
+            <field name="template_id" ref="report_extend_bf.base_tmpl_print_out_vals"/>
+        </record>
+    </data>
+</odoo>

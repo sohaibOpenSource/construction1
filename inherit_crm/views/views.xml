@@ -1,0 +1,119 @@
+<odoo>
+    <data>
+        <record id="crm_inherit" model="ir.ui.view">
+            <field name="name">crm.inherit</field>
+            <field name="model">crm.lead</field>
+            <field name="inherit_id" ref="sale_crm.crm_case_form_view_oppor"/>
+            <field name="arch" type="xml">
+                <xpath expr="//button[@name='action_sale_quotations_new']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//button[@name='action_view_sale_quotation']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//button[@name='action_set_won_rainbowman']" position="attributes">
+                    <attribute name="string">Mark Qualified</attribute>
+                </xpath>
+                <xpath expr="//widget[last()]" position="replace">
+                    <widget name="web_ribbon" title="Qualified" attrs="{'invisible': [('probability', '&lt;', 100)]}"/>
+                </xpath>
+                <xpath expr="//widget[@name='web_ribbon']" position="replace">
+                    <widget name="web_ribbon" title="lost" bg_color="bg-danger"
+                            attrs="{'invisible': ['|', ('probability', '&gt;', 0), ('active', '=', True)]}"/>
+                </xpath>
+            </field>
+        </record>
+
+
+
+        <!-- Inherit Form View to Modify it -->
+        <record id="inherit_sale_contracted_form" model="ir.ui.view">
+            <field name="name">Sale Inherit</field>
+            <field name="model">sale.contracted.order</field>
+            <field name="inherit_id" ref="sale_contracted_order.view_contracted_order_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//header" position="inside">
+                    <button name="reset_draft" string="Reset To Draft" type="object"
+                            attrs="{'invisible': [('state', '=', 'draft')]}"/>
+                </xpath>
+            </field>
+        </record>
+
+    <record id="view_project_type_form" model="ir.ui.view">
+        <field name="name">view.project.type.form</field>
+        <field name="model">project.type</field>
+        <field name="arch" type="xml">
+            <form string="Project Type">
+                <sheet>
+                <group>
+                    <group>
+                        <field name="name" />
+                    </group>
+                </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_project_type_tree" model="ir.ui.view">
+        <field name="name">view.project.type.tree</field>
+        <field name="model">project.type</field>
+        <field name="arch" type="xml">
+            <tree string="Project Type">
+                <field name="name" />
+            </tree>
+        </field>
+    </record>
+
+
+
+    <record id="action_project_type" model="ir.actions.act_window">
+        <field name="name">Type</field>
+        <field name="res_model">project.type</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">Click to Create a new Project Type</p>
+        </field>
+    </record>
+
+    <record id="action_project_type_list" model="ir.actions.act_window.view">
+        <field name="sequence" eval="1"/>
+        <field name="view_mode">tree</field>
+        <field name="view_id" ref="view_project_type_tree"/>
+        <field name="act_window_id" ref="action_project_type"/>
+    </record>
+
+    <record id="action_project_type_form" model="ir.actions.act_window.view">
+        <field name="sequence" eval="2"/>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="view_project_type_form"/>
+        <field name="act_window_id" ref="action_project_type"/>
+    </record>
+
+
+    <menuitem
+        id="menu_action_project_type"
+        action="action_project_type"
+        name="Project Type"
+        sequence="11"
+        parent='project.menu_project_config'
+        />
+
+    <record id="project_project_form_inherited2" model="ir.ui.view">
+        <field name="name">project.project.form.inherited2</field>
+        <field name="model">project.project</field>
+        <field name="inherit_id" ref="project.edit_project" />
+        <field name="arch" type="xml">
+          <xpath expr="//field[@name='name']" position="after">
+              <div name="options_active">
+                  <div>
+                      <label for="project_type" class="oe_inline" string="Project Type:"/>
+                      <field name="project_type"/>
+                  </div>
+              </div>
+        </xpath>
+        </field>
+    </record>
+
+    </data>
+</odoo>

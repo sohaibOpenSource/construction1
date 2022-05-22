@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="view_bolson_bolson_form" model="ir.ui.view">
+            <field name="name">bolson.bolson.form</field>
+            <field name="model">bolson.bolson</field>
+            <field name="arch" type="xml">
+                <form string="Bolson">
+                    <header>
+                        <button name="conciliar" string="Conciliar" type="object" />
+                        <button name="cancelar" string="Cancelar" type="object" />
+                    </header>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                                <field name="diario"/>
+                            </group>
+                            <group>
+                                <field name="fecha"/>
+                                <field name="usuario_id"/>
+                                <field name="company_id"/>
+                            </group>
+                        </group>
+                        <field name="facturas" readonly="True"/>
+                        <field name="cheques" readonly="True"/>
+                        <group>
+                            <group>
+                                <field name="cuenta_desajuste"/>
+                            </group>
+                            <group>
+                                <field name="asiento" readonly="True"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_bolson_bolson_tree" model="ir.ui.view">
+            <field name="name">bolson.bolson.tree</field>
+            <field name="model">bolson.bolson</field>
+            <field name="arch" type="xml">
+                <tree string="Bolson">
+                    <field name="fecha"/>
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="action_bolson_bolson" model="ir.actions.act_window">
+            <field name="name">Liquidaciones</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">bolson.bolson</field>
+        </record>
+
+        <menuitem action="action_bolson_bolson" id="menu_bolson_bolson" parent="account.menu_finance_payables"/>
+
+    </data>
+</openerp>

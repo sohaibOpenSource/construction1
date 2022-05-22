@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <report
+            id="bolson_bolson"
+            string="Liquidación"
+            model="bolson.bolson"
+            report_type="qweb-pdf"
+            file="bolson.reporte_bolson"
+            name="bolson.reporte_bolson"
+        />
+
+    </data>
+</openerp>

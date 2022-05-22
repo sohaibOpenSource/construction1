@@ -1,0 +1,17 @@
+Bug env:
+	(virt_odoo11) odoo11@ip-172-31-20-243:~$ unoconv 
+	unoconv: Cannot find a suitable pyuno library and python binary combination in /usr/lib/libreoffice
+	ERROR: No module named 'uno'
+
+	unoconv: Cannot find a suitable office installation on your system.
+	ERROR: Please locate your office installation and send your feedback to:
+	       http://github.com/dagwieers/unoconv/issues
+
+	OR log odoo:
+	2019-01-25 05:47:58,594 3550 WARNING verdifresh odoo.addons.report_extend_bf.controllers.main: (b'', b"unoconv: Cannot find a suitable pyuno library and python binary combination in /usr/liblibreoffice\nERROR: No module named 'uno'\n\nunoconv: Cannot find a suitable office installation on your system.\nERROR: Please locate your office installation and send your feedback to:\n       http://github.com/dagwieers/unoconv/issues\n")
+
+
+
+Solve: (https://github.com/dagwieers/unoconv/issues/405#issuecomment-352429704)
+  Try to copy from /usr/bin/unoconv to /usr/local/bin/unoconv.
+  And try to replace #!/usr/bin/env python3 on #!/usr/bin/python3 in unoconv file.

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="view_order_form" model="ir.ui.view">
+        <field name="name">sale.order.from.contracted.form</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='order_line']//tree/field[@name='product_id']" position="before">
+                <field name="job_cost_type" decoration-bf="1" context="{'from_sale_order': True}"/>
+            </xpath>
+            <xpath expr="//field[@name='order_line']//tree/field[@name='product_id']" position="after">
+                <field name="contracted_order_line" context="{'from_sale_order': True}"/>
+            </xpath>
+             <xpath expr="//field[@name='order_line']" position="attributes">
+                <attribute name="context">{'from_sale_order': True}</attribute>
+            </xpath>
+            <field name="state" position="attributes">
+                <attribute name="statusbar_visible">draft,sent,sale</attribute>
+            </field>
+            <xpath expr="//header" position="inside">
+                <button name="create_blanket_order" type="object" string="Create Contracted Order" class="oe_highlight" attrs="{'invisible': [('state', '=', 'sale')]}"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_order_form_disable_adding_lines" model="ir.ui.view">
+        <field name="name">sale.order.from.contracted.form - disable adding lines</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="groups_id" eval="[(6,0,[ref('sale_contracted_order.contracted_orders_disable_adding_lines')])]" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='order_line']//tree" position="attributes">
+                <attribute name="create">contracted_order_id==False</attribute>
+            </xpath>
+        </field>
+    </record>
+</odoo>

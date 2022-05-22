@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="bolson_compania" model="ir.rule">
+            <field name="name">bolson multi-company</field>
+            <field name="model_id" ref="bolson.model_bolson_bolson"/>
+            <field name="domain_force">['|',('company_id','child_of',[user.company_id.id]),('company_id','=',False)]</field>
+            <field name="groups" eval="[(4, ref('account.group_account_invoice'))]"/>
+        </record>
+    </data>
+</odoo>

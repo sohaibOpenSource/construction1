@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="view_asignar" model="ir.ui.view">
+            <field name="name">bolson.asignar.form</field>
+            <field name="model">bolson.asignar</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Asignar liquidación">
+                   <group>
+                       <field name="bolson_id"/>
+                   </group>
+                   <footer>
+                       <button string="Asignar" name="asignar" type="object"/>
+                       <button string="Cancel" class="btn-default" special="cancel"/>
+                   </footer>
+               </form>
+            </field>
+        </record>
+
+        <record id="action_asignar" model="ir.actions.act_window">
+            <field name="name">Asignar liquidación</field>
+            <field name="res_model">bolson.asignar</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="view_asignar"/>
+            <field name="target">new</field>
+            <field name="binding_model_id" ref="account.model_account_invoice" />
+        </record>
+
+    </data>
+</openerp>

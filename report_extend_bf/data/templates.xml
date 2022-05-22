@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="base_tmpl_print_out_vals" model="ir.attachment">
+            <field name="name">base_tmpl_print_out_vals.odt</field>
+            <field name="type">binary</field>
+            <field name="datas" type="base64" file="report_extend_bf/templates/print_out_vals.odt"/>
+        </record>
+    </data>
+</odoo>

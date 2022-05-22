@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_crm_opportunity_number_assign_tree" model="ir.ui.view">
+        <field name="name">crm.lead.number_assign.tree.inherit</field>
+        <field name="model">crm.lead</field>
+        <field name="inherit_id" ref="crm.crm_case_tree_view_oppor"/>
+        <field name="arch" type="xml">
+            <field name="name" position="before">
+                <field name="lead_number"/>
+             </field>
+        </field>
+    </record>
+
+    <record id="view_crm_lead_inherited" model="ir.ui.view">
+        <field name="name">view_crm_lead_inherited_form</field>
+        <field name="model">crm.lead</field>
+        <field name="inherit_id" ref="crm.crm_lead_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='name']" position="before">
+                <field name="lead_number" placeholder="Lead's Number"/>
+            </xpath>
+             <xpath expr="//button[@name='action_schedule_meeting']" position="after">
+                 <button name="action_open_job_costing_form"
+                         type="object" class="oe_stat_button" icon="fa-pencil-square-o" widget="statinfo"
+                         attrs="{'invisible': [('stage_id', '!=', 4)]}">
+                    <div class="o_stat_info">
+                        <span class="o_stat_text">Create BOQ</span>
+                    </div>
+                </button>
+             </xpath>
+            <xpath expr="//page[@name='internal_notes']" position="after">
+                <page string="Project Information">
+                    <group>
+                        <group>
+                            <field name="project_information" required="True"/>
+                            <field name="project_name" required="True"/>
+                            <field name="project_type"/>
+                            <field name="consultant_name"/>
+                            <field name="project_received_date"/>
+                            <field name="proposal_submittal_deadline" required="True"/>
+                        </group>
+                        <group>
+                            <field name="project_start_date"/>
+                            <field name="contractor_name"/>
+                            <field name="mep_contractor_name"/>
+                            <field name="expected_awarding_date" required="True"/>
+<!--                            <field name="project_type" required="True"/>-->
+                            <field name="project_duration"/>
+                        </group>
+                        <group col="10" string="Lead Importance">
+                            <field name="is_old_customer"/>
+                            <field name="is_budget_price_ave"/>
+                            <field name="is_high_rank_end_user"/>
+                            <field name="is_deadline"/>
+                            <field name="is_boq"/>
+                            <field name="is_drawing"/>
+                            <field name="is_vendor_list"/>
+                        </group>
+                        <div>
+                            <label for="probability_lead" style="font-weight: bold;"/>
+                            <field name="probability_lead" readonly="True" class="oe_inline" force_save="True"/><span> %</span>
+                        </div>
+                    </group>
+                </page>
+                <page string="Lead/Inquiry Information">
+                    <group>
+                        <group>
+                            <field name="inquiry_date" required="True"/>
+                            <field name="rfi_contact_name" required="True"/>
+                            <field name="exp_budget"/>
+                        </group>
+                        <group>
+                            <field name="account_manager" required="True"/>
+                            <field name="rfi_contact_number" required="True"/>
+                            <field name="rfi_contact_email" required="True"/>
+                        </group>
+                    </group>
+                </page>
+                <page string="Checklist for Quotation">
+                    <div class="table-responsive">
+                        <table class="table table-borderless" style="padding:0px;">
+                            <tr style="border: 0;">
+                                <td style="border: 0;">
+                                    <label for="rfq_or_tender_documents"/>
+                                    <field name="is_rfq_or_tender_documents" class="oe_inline"/>
+                                </td>
+                                <td style="border: 0;">
+                                    <field name="rfq_or_tender_documents" class="oe_inline"/>
+                                </td>
+                                <td style="border: 0;">
+                                    <label for="vendor_list"/>
+                                    <field name="is_vendor_list_file" class="oe_inline"/>
+                                </td>
+                                <td style="border: 0;">
+                                    <field name="vendor_list" class="oe_inline"/>
+                                </td>
+                            </tr>
+                            <tr style="border: 0;">
+                                <td style="border: 0;">
+                                    <label for="boq"/>
+                                    <field name="is_boq_file" class="oe_inline"/>
+                                </td>
+                                <td style="border: 0;">
+                                    <field name="boq" class="oe_inline"/>
+                                </td>
+                                <td style="border: 0;">
+                                    <label for="specification"/>
+                                    <field name="is_specification" class="oe_inline"/>
+                                </td>
+                                <td style="border: 0;">
+                                    <field name="specification" class="oe_inline"/>
+                                </td>
+                            </tr>
+                            <tr style="border: 0;">
+                                <td style="border: 0;">
+                                    <label for="soft_copy_drawing_scaled_and_autocad_for_evl_and_security_systems"/>
+                                    <field name="is_soft_copy_for_autocad_and_security" class="oe_inline"/>
+                                </td>
+                                <td style="border: 0;">
+                                    <field name="soft_copy_drawing_scaled_and_autocad_for_evl_and_security_systems" class="oe_inline"/>
+                                </td>
+                                <td style="border: 0;">
+                                    <label for="site_survey_bom"/>
+                                    <field name="is_site_survey_bom" class="oe_inline"/>
+                                </td>
+                                <td style="border: 0;">
+                                    <field name="site_survey_bom" class="oe_inline"/>
+                                </td>
+                            </tr>
+                            <tr style="border: 0;">
+                                <td style="border: 0;">
+                                    <label for="drawing_list_and_legend_drawings"/>
+                                    <field name="is_drawing_list_and_legend_drawings"/>
+                                </td>
+                                <td style="border: 0;">
+                                    <field name="drawing_list_and_legend_drawings"/>
+                                </td>
+                                <td style="border: 0;">
+                                    <label for="civil_work_or_electrical_work"/>
+                                    <field name="is_civil_work_or_electrical_work"/>
+                                </td>
+                                <td style="border: 0;">
+                                    <field name="civil_work_or_electrical_work"/>
+                                </td>
+                            </tr>
+                            <tr style="border: 0;">
+                                <td style="border: 0;">
+                                    <label for="single_line_diagrams"/>
+                                    <field name="is_single_line_diagrams"/>
+                                </td>
+                                <td style="border: 0;">
+                                    <field name="single_line_diagrams"/>
+                                </td>
+                                <td style="border: 0;">
+                                    <label for="other_docs"/>
+                                    <field name="is_other_docs"/>
+                                </td>
+                                <td style="border: 0;">
+                                    <field name="other_docs"/>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </page>
+                <page string="Presales Deliverables">
+                    <div class="table-responsive">
+                        <table class="table table-borderless" style="padding:0px;">
+                            <th><h2>Deliverables Required from Presales</h2></th>
+                            <th><h2>Project Status*</h2></th>
+                            <tr style="border: 0;">
+                                <td style="border: 0;">
+                                    <label for="boq_with_costing_as_per_DXB"/>
+                                    <field name="boq_with_costing_as_per_DXB" class="oe_inline"/>
+                                </td>
+                                <td style="border: 0;">
+                                    <label for="job_in_hand"/>
+                                    <field name="job_in_hand" class="oe_inline"/>
+                                </td>
+                            </tr>
+                            <tr style="border: 0;">
+                                <td style="border: 0;">
+                                    <label for="datasheet_required"/>
+                                    <field name="datasheet_required" class="oe_inline"/>
+                                </td>
+                                <td style="border: 0;">
+                                    <label for="project_with_end_user"/>
+                                    <field name="project_with_end_user" class="oe_inline"/>
+                                </td>
+                            </tr>
+                            <tr style="border: 0;">
+                                <td style="border: 0;">
+                                    <label for="others_please_specify"/>
+                                    <field name="others_please_specify" class="oe_inline"/>
+                                    <label for="others_specification" class="oe_inline"
+                                        attrs="{'invisible':[('others_please_specify','=',False)]}"/>
+                                    <field name="others_specification" class="oe_inline"
+                                        attrs="{'invisible':[('others_please_specify','=',False)]}"/>
+                                </td>
+                                <td style="border: 0;">
+                                    <label for="budgetary_price_without_part_no"/>
+                                    <field name="budgetary_price_without_part_no" class="oe_inline"/>
+                                </td>
+                            </tr>
+                            <tr style="border: 0;">
+                                <td style="border: 0;">
+                                    <label for="bid_bond_if_required"/>
+                                    <field name="bid_bond_if_required" class="oe_inline"/>
+                                    <label for="bid_bond_specification" class="oe_inline"
+                                           attrs="{'invisible':[('bid_bond_if_required','=',False)]}"/>
+                                    <field name="bid_bond_specification" class="oe_inline"
+                                           attrs="{'invisible':[('bid_bond_if_required','=',False)]}"/>
+                                </td>
+                                <td style="border: 0;">
+                                    <label for="tender_or_bidding"/>
+                                    <field name="tender_or_bidding" class="oe_inline"/>
+                                </td>
+                            </tr>
+                            <tr style="border: 0;">
+                                <td style="border: 0;">
+                                    <label for="presale_percentage"/>
+                                    <field name="presale_percentage" class="oe_inline"/>
+                                    <label for="presale_date" class="oe_inline"/>
+                                    <field name="presale_date" class="oe_inline"/>
+                                </td>
+                                <td style="border: 0;">
+                                    <label for="budgetary_price_with_part_no"/>
+                                    <field name="budgetary_price_with_part_no" class="oe_inline"/>
+                                </td>
+                            </tr>
+                            <tr style="border: 0;">
+                                <td style="border: 0;">
+                                    <label for="presale_validity"/>
+                                    <field name="presale_validity" class="oe_inline"/>
+                                </td>
+                                <td style="border: 0;">
+                                    <label for="presales_other_notes"/>
+                                    <field name="presales_other_notes" class="oe_inline"/>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </page>
+                <page string="System Interested">
+                    <notebook>
+                        <page string="System Information*">
+                            <field name="interested_system_ids">
+                                <tree editable="top">
+                                    <field name="interested_products_or_service"/>
+                                    <field name="system_brand"/>
+                                    <field name="target_price_or_budget"/>
+                                    <field name="remarks"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="crm.crm_lead_action_pipeline">
+        <field name="name">Leads</field>
+        <field name="res_model">crm.lead</field>
+        <field name="view_mode">tree,kanban,graph,pivot,form,calendar,activity</field>
+        <field name="domain">[('type','=','opportunity')]</field>
+        <field name="context">{
+                'default_type': 'opportunity',
+                'search_default_assigned_to_me': 1
+        }</field>
+        <field name="search_view_id" ref="crm.view_crm_case_opportunities_filter"/>
+    </record>
+
+    <record id="crm.crm_lead_action_pipeline_view_tree" model="ir.actions.act_window.view">
+        <field name="sequence" eval="0"/>
+        <field name="view_mode">tree</field>
+        <field name="view_id" ref="crm.crm_case_tree_view_oppor"/>
+        <field name="act_window_id" ref="crm.crm_lead_action_pipeline"/>
+    </record>
+
+    <record id="crm.crm_lead_action_pipeline_view_kanban" model="ir.actions.act_window.view">
+        <field name="sequence" eval="1"/>
+        <field name="view_mode">kanban</field>
+        <field name="view_id" ref="crm.crm_case_kanban_view_leads"/>
+        <field name="act_window_id" ref="crm.crm_lead_action_pipeline"/>
+    </record>
+
+    <record id="crm.crm_menu_root" model="ir.ui.menu">
+        <field name="action" ref="crm.crm_lead_action_pipeline"/>
+    </record>
+
+</odoo>
